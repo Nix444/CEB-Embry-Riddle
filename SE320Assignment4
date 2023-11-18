@@ -1,0 +1,95 @@
+// SE320  
+// Assignment #4
+// Chris Bierley
+// 
+// Resources: 
+// https://erau.instructure.com/courses/162522/modules
+// https://www.tutorialspoint.com/java/java_linkedhashset_class.htm
+// https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html
+//
+// Notes:
+// The assignment doesn't say if I have to split this up into different files or not,
+// so I put it all into one file.
+//
+////
+
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.Scanner;
+import java.util.TreeSet;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.text.ParseException;
+
+
+public class SE320Assignment4 {
+	
+    public static void main(String[] args) {
+        Set<String> set1 = new LinkedHashSet<>();
+        set1.add("George");
+        set1.add("Jim");
+        set1.add("John");
+        set1.add("Blake");
+        set1.add("Kevin");
+        set1.add("Michael");
+
+        Set<String> set2 = new LinkedHashSet<>();
+        set2.add("George");
+        set2.add("Katie");
+        set2.add("Kevin");
+        set2.add("Michelle");
+        set2.add("Ryan");
+
+        Set<String> union = new LinkedHashSet<>(set1);
+        union.addAll(set2);
+
+        Set<String> intersection = new LinkedHashSet<>(set1);
+        intersection.retainAll(set2);
+
+        Set<String> difference = new LinkedHashSet<>(set1);
+        difference.removeAll(set2);
+
+        System.out.println("Union: " + union);
+        System.out.println("Intersection: " + intersection);
+        System.out.println("Difference: " + difference);
+        
+        //// Part 2
+        
+        try {
+            File file = new File("C:\\Users\\Kino4\\OneDrive\\Desktop\\SE320\\TextFile.txt");
+            Scanner scanner = new Scanner(file);
+            TreeSet<String> words = new TreeSet<>();
+
+            while (scanner.hasNext()) {
+                words.add(scanner.next());
+            }
+
+            scanner.close();
+            System.out.println("Non-duplicate words in order: " + words);
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        
+        //// Part 3
+        
+        NumberFormat nfUK = NumberFormat.getInstance(Locale.UK);
+        nfUK.setMaximumFractionDigits(2);
+        System.out.println(nfUK.format(12345.678));
+        
+        NumberFormat nfUS = NumberFormat.getCurrencyInstance(Locale.US);
+        System.out.println(nfUS.format(12345.678));
+        
+        try {
+            NumberFormat nf = NumberFormat.getInstance();
+            Number num = nf.parse("12,345.678");
+            System.out.println(num);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
+}
