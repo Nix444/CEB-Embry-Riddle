@@ -1,0 +1,30 @@
+/*
+Final Assignment - Part 3
+Chris Bierley
+
+Refrence - Almost entirely code given on canvas.
+
+Notes - I started the other parts in Python which I like using.
+Then I realized this part the code was given in java.
+So I just finished it in java. 
+I hope that creating the programs in different languages is acceptable...
+*/
+
+
+public class Question3 {
+
+    public static <E extends Comparable<E>> int linearSearch(E[] list, E key) {
+        for (int i = 0; i < list.length; i++) {       // added code
+            if (list[i].compareTo(key) == 0) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static void main(String[] args) {
+        Integer[] list = {3, 4, 5, 1, -3, -5, -1};
+        System.out.println(linearSearch(list, 2));   // -1
+        System.out.println(linearSearch(list, 5));   // 2
+    }
+}
