@@ -3,7 +3,7 @@
 #
 # Refrences -
 #   https://www.digitalocean.com/community/tutorials/python-socket-programming-server-client
-#   
+#   https://realpython.com/python-sockets/
 #
 # Notes - First time creating anything like a server.
 #   Had to do a lot of research.
