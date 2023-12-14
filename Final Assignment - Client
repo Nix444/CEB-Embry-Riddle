@@ -1,0 +1,31 @@
+# Final Assignment - Client
+# Chris Bierley
+#
+# Refrences -
+#   https://www.digitalocean.com/community/tutorials/python-socket-programming-server-client
+#
+#
+# Notes - First time creating anything like a server.
+#   Had to do a lot of research.
+
+
+import socket
+
+def client_program():
+    host = '127.0.0.1'
+    port = 4444
+    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    client_socket.connect((host, port))
+
+    weight = input("Input your weight: ")
+    height = input("Input your height: ")
+    message = f'{weight},{height}'
+    client_socket.send(message.encode())
+
+    bmi = client_socket.recv(2048).decode()
+    print(f"Your BMI (Body Mass Index) is: {bmi}")
+
+    client_socket.close()
+
+if __name__ == '__main__':
+    client_program()
